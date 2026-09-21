@@ -15,12 +15,11 @@ public class Main {
     private static final String DESTINATION = "Aktau warehouse";
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         try {
-            String deliveryMode = prompt(scanner, "Delivery mode (ROAD or SEA): ");
-            String uiPlatform = prompt(scanner, "UI platform (WINDOWS or MACOS): ");
+            String deliveryMode = prompt(sc, "Delivery mode (ROAD or SEA): ");
+            String uiPlatform = prompt(sc, "UI platform (WINDOWS or MACOS): ");
 
-            // Validate BOTH choices before creating anything.
             Logistics logistics = selectLogistics(deliveryMode);
             iGUIFactory guiFactory = selectGuiFactory(uiPlatform);
 
@@ -33,12 +32,12 @@ public class Main {
         }
     }
 
-    private static String prompt(Scanner scanner, String message) throws InvalidChoiceException {
+    private static String prompt(Scanner sc, String message) throws InvalidChoiceException {
         System.out.print(message);
-        if (!scanner.hasNextLine()) {
+        if (!sc.hasNextLine()) {
             throw new InvalidChoiceException("Input is missing.");
         }
-        return scanner.nextLine().trim();
+        return sc.nextLine().trim();
     }
 
     private static Logistics selectLogistics(String deliveryMode) throws InvalidChoiceException {
